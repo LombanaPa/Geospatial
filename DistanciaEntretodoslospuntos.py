@@ -1,3 +1,9 @@
+import gpxpy as gpx
+from tqdm import tqdm
+import geopandas as gpd
+import pandas as pd
+import numpy as np
+
 vali = {}
 df_completo['homepass_move']=None
 for kn in tqdm(df_geo['IDENTIFICACION'].unique()):
