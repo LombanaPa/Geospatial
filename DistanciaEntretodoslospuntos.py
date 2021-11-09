@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 vali = {}
-df_completo['homepass_move']=None
+
 for kn in tqdm(df_geo['IDENTIFICACION'].unique()):
     df_completo = df_geo.loc[df_geo['IDENTIFICACION']==kn].reset_index()
     if df_completo.shape[0]>1:
@@ -26,11 +26,11 @@ for kn in tqdm(df_geo['IDENTIFICACION'].unique()):
                 distancias=pd.concat([distancias,distancia_k])
             base_df = pd.concat([base_df,distancias])
 
-    ar=np.array(base_df['distancia'])
-    if ar[(ar>1)&(ar<30)].size==0:
-        res=0
-    else:
-        res=1
+        ar=np.array(base_df['distancia'])
+        if ar[(ar>1)&(ar<30)].size==0:
+            res=0
+        else:
+            res=1
     if len(vali)%10000==0:
         pd.DataFrame(vali.items(),columns=['identificacion','flag']).to_csv("DistanciasFinales.csv",";", index=False)
         
